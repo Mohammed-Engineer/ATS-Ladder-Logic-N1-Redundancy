@@ -1,43 +1,57 @@
-# ATS Automatic Transfer Switch
-# N+1 Redundancy Ladder Logic
 
-## About
-Automatic Transfer Switch control system
-designed in ladder logic for mission
-critical facilities including data centers
-hospitals and banks.
+# âš¡ Automatic Transfer Switch â€” N+1 Redundancy
+# PLC Ladder Logic
 
-## Scenario
-One main supply from transformer
-One backup generator
-Automatic changeover on main supply failure
+![PLC](https://img.shields.io/badge/PLC-Ladder_Logic-orange?style=for-the-badge)
+![IEC 61131](https://img.shields.io/badge/IEC_61131--3-Standard-blue?style=for-the-badge)
+![Critical Power](https://img.shields.io/badge/Critical_Power-N%2B1-red?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)
 
-## What It Does
-- Main supply fails → CB1 opens automatically
-- Generator starts automatically
-- 10 second stabilisation timer
-- CB2 closes → Generator powers building
-- Alarm sounds → Engineer notified
-- Main supply returns → Transfer back automatically
-- Safety interlock prevents both supplies
-  connecting simultaneously
+> ATS control system in PLC ladder logic for N+1 redundancy â€” automatic changeover from main supply to generator on failure. Designed for data centers, hospitals and mission critical facilities.
 
-## Rungs
-- Rung 1: Normal operation CB1 control
-- Rung 2: Generator start on main failure
-- Rung 3: Generator stabilisation timer 10s
-- Rung 4: CB2 close after timer
-- Rung 5: Safety interlock CB1 and CB2
-- Rung 6: Alarm when generator running
-- Rung 7: Return timer on main restoration
-- Rung 8: Transfer back to main supply
+---
 
-## Redundancy
-N+1 Configuration
-N = Main transformer supply
-+1 = Backup generator
-Zero downtime for critical loads!
+## ðŸ”„ How It Works
 
-## Platform
-PLC Fiddle Simulator
-Ladder Logic — IEC 61131-3 Standard
+```
+NORMAL:     Main Transformer â†’ CB1 CLOSED â†’ Building powered âœ…
+FAILURE:    Main supply fails â†’ CB1 OPENS automatically
+            Generator starts â†’ 10 second stabilisation timer
+            CB2 CLOSES â†’ Generator powers building âœ…
+            Alarm sounds â†’ Engineer notified ðŸš¨
+RESTORE:    Main supply returns â†’ Transfer back automatically
+SAFETY:     CB1 and CB2 NEVER close simultaneously â€” interlock active
+```
+
+---
+
+## ðŸ“‹ Ladder Logic Rungs
+
+| Rung | Function |
+|---|---|
+| Rung 1 | Normal operation â€” CB1 control |
+| Rung 2 | Generator start on main supply failure |
+| Rung 3 | Generator stabilisation timer â€” 10 seconds |
+| Rung 4 | CB2 close after timer complete |
+| Rung 5 | Safety interlock â€” CB1 and CB2 cannot close together |
+| Rung 6 | Alarm activation when generator running |
+| Rung 7 | Return timer on main supply restoration |
+| Rung 8 | Transfer back to main supply |
+
+---
+
+## ðŸ—ï¸ N+1 Redundancy Configuration
+
+| Component | Role |
+|---|---|
+| N | Main transformer supply â€” normal operation |
+| +1 | Backup diesel generator â€” standby |
+| Result | Zero downtime for critical loads âœ… |
+
+**Applications:** Data Centers Â· Hospitals Â· Banks Â· Emergency Services
+
+---
+
+**Platform:** PLC Fiddle Simulator | **Standard:** IEC 61131-3 Ladder Logic  
+**Author:** Mohammed Azam Ali MIET | Final Testing Engineer â€” Schneider Electric Leeds UK  
+**GitHub:** github.com/Mohammed-Engineer
